@@ -31,14 +31,19 @@ export function Sidebar() {
           <div
             key={label}
             className={cn(
-              "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+              "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium",
               active
                 ? "bg-gray-900 text-white"
-                : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                : "cursor-not-allowed text-gray-400"
             )}
           >
             <Icon className="h-4 w-4" />
             {label}
+            {!active && (
+              <span className="ml-auto rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-400">
+                Soon
+              </span>
+            )}
           </div>
         ))}
       </nav>
