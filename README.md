@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Olist Analytics — E-commerce Dashboard
 
-## Getting Started
+A portfolio-ready sales analytics dashboard, built to demo the kind of reporting a small
+business or startup would want for their store: revenue trends, order status, top products,
+and category breakdowns.
 
-First, run the development server:
+**Live demo, zero setup** — the dataset is synthetic but structured like the real
+[Olist Brazilian e-commerce dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+(orders, order items, products, categories, customers), generated in `lib/data.ts` with a
+seeded random generator so numbers stay consistent across reloads and deploys.
+
+## Stack
+
+- Next.js 16 (App Router), TypeScript
+- Tailwind CSS 4
+- Recharts for charts
+- lucide-react for icons
+
+## What's included
+
+- Sidebar nav + header with a "Live Demo" badge
+- 4 KPI cards (revenue, orders, avg. order value, customers) with YoY change
+- 24-month revenue + orders trend, dual-axis line/bar combo chart
+- Revenue by category (horizontal bar)
+- Order status breakdown (donut)
+- Top products table
+
+## Running locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deploying
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Push this repo to GitHub.
+2. Go to [vercel.com/new](https://vercel.com/new), import the repo, click Deploy.
+3. You get a shareable URL in a couple minutes — that's the link to send prospective clients.
 
-## Learn More
+## Swapping in real data
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Everything reads from `lib/data.ts`. To connect a real data source (CSV upload, Supabase,
+Postgres), replace the exported `monthlyMetrics`, `categorySales`, `orderStatusBreakdown`,
+`topProducts`, and `kpis` with data fetched from your source — the component props and
+shapes (`MonthlyMetric`, `CategorySales`, etc.) stay the same.
